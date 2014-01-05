@@ -1,4 +1,4 @@
-iOS-Categories
+AF-iOS-Categories
 ==============
 iOS categories to simplify your life, and speed up coding.
 
