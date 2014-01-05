@@ -1,6 +1,6 @@
 NSString+JS
 ==============
-Adds javascript like methods (with obj-c method syntax) to NSString:
+Adds javascript-like methods (with obj-c method syntax) to NSString:
  
 ## Methods
 - **`-(int)indexOfString:(NSString *)string`**   
