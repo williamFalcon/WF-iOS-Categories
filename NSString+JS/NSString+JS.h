@@ -32,7 +32,10 @@
  */
 -(NSArray *)splitOnChar:(char)ch;
 
-
+/*
+ Splits a string into an array of substrings
+ */
+-(NSArray *)splitOnString:(NSString *)string;
 
 /*
  Extracts part of a string, beginning at the character at the specified position, and returns the specified number of characters
@@ -50,7 +53,7 @@
 
 
 /*
- Extracts part of a string, from end to the eginning of the input string.
+ Extracts part of a string, from end to the beginning of the input string.
  Returns null if not found.
  */
 -(NSString *)substringFromString:(NSString*)ch;
@@ -84,6 +87,9 @@
 -(BOOL)contains:(NSString *)string;
 
 
-
+/*
+ Replaces each substring of this string that matches the given regular expression with the given replacement (This is from Java String)
+ */
+-(NSString *)replaceAll:(NSString *)regex replacement:(NSString *)replacement;
 
 @end

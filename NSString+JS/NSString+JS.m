@@ -33,6 +33,11 @@
     return range.location;
 }
 
+-(NSArray *)splitOnString:(NSString *)string {
+    NSArray *results = [self componentsSeparatedByString:string];
+    
+    return results;
+}
 
 -(NSArray *)splitOnChar:(char)ch {
     NSMutableArray *results = [NSMutableArray new];
@@ -83,8 +88,7 @@
         return NULL;
     }
     
-    NSString *result = [NSString new];
-    result = [self substringFrom:0 to:index];
+    NSString *result = [self substringFrom:0 to:index];
     
     return result;
 }
@@ -99,16 +103,13 @@
         return NULL;
     }
     
-    NSString *result = [NSString new];
-    result = [self substringFrom:index+1 to:self.length];
-    
+    NSString *result = [self substringFrom:index+1 to:self.length];
     return result;
 }
 
 
 -(NSString *)concat:(NSString *)string{
-    NSString *result = [NSString new];
-    result = [NSString stringWithFormat:@"%@%@",self, string];
+    NSString *result = [NSString stringWithFormat:@"%@%@",self, string];
     return result;
 }
 
@@ -128,6 +129,13 @@
 -(BOOL)contains:(NSString *)string {
     NSRange range = [self rangeOfString:string];
     return (range.location != NSNotFound);
+}
+
+-(NSString *)replaceAll:(NSString *)regex replacement:(NSString *)replacement{
+    return [self stringByReplacingOccurrencesOfString:regex
+                                                         withString: replacement
+                                                            options: NSRegularExpressionSearch
+                                                              range: NSMakeRange(0, self.length)];
 }
 
 @end
