@@ -1,4 +1,4 @@
-iOS-Categories
+WF-iOS-Categories
 ==============
 iOS categories to simplify your life, and speed up coding.
 
