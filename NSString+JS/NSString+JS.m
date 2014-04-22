@@ -12,8 +12,13 @@
 
 
 -(int)indexOfString:(NSString *)string{
-    NSRange range = [self rangeOfString:string];
     
+    NSRange range;
+    
+    if (string){
+        range = [self rangeOfString:string options:NSCaseInsensitiveSearch];
+    }
+        
     //return -1 if string not found
     if (range.length==0) {
         return -1;
@@ -23,7 +28,12 @@
 
 
 -(int)lastIndexOfString:(NSString *)string{
-    NSRange range = [self rangeOfString:string options:NSBackwardsSearch];
+    
+    NSRange range;
+    
+    if (string){
+        range = [self rangeOfString:string options:NSCaseInsensitiveSearch];
+    }
     
     //return -1 if string not found
     if (range.length==0) {
@@ -34,9 +44,14 @@
 }
 
 -(NSArray *)splitOnString:(NSString *)string {
-    NSArray *results = [self componentsSeparatedByString:string];
-    
-    return results;
+    if (string) {
+        NSArray *results = [self componentsSeparatedByString:string];
+        
+        return results;
+
+    }else{
+        return NULL;
+    }
 }
 
 -(NSArray *)splitOnChar:(char)ch {
@@ -79,38 +94,51 @@
 
 
 -(NSString *)substringToString:(NSString*)ch{
-
-    //find index of the input char
-    int index = [self indexOfString:ch];
     
-    //Handle case where string was not found
-    if (index==-1) {
-        return NULL;
+    if (ch) {
+        //find index of the input char
+        int index = [self indexOfString:ch];
+        
+        //Handle case where string was not found
+        if (index==-1) {
+            return NULL;
+        }
+        
+        NSString *result = [self substringFrom:0 to:index];
+        
+        return result;
+    }else{
+        return self;
     }
     
-    NSString *result = [self substringFrom:0 to:index];
-    
-    return result;
 }
 
 -(NSString *)substringFromString:(NSString*)ch{
     
-    //find index of the input char
-    int index = [self indexOfString:ch];
-    
-    //Handle case where string was not found
-    if (index==-1) {
+    if (ch){
+        //find index of the input char
+        int index = [self indexOfString:ch];
+        
+        //Handle case where string was not found
+        if (index==-1) {
+            return NULL;
+        }
+        
+        NSString *result = [self substringFrom:index+1 to:self.length];
+        return result;
+    }else{
         return NULL;
     }
-    
-    NSString *result = [self substringFrom:index+1 to:self.length];
-    return result;
 }
 
 
 -(NSString *)concat:(NSString *)string{
-    NSString *result = [NSString stringWithFormat:@"%@%@",self, string];
-    return result;
+    if (string) {
+        NSString *result = [NSString stringWithFormat:@"%@%@",self, string];
+        return result;
+    }else{
+        return self;
+    }
 }
 
 
@@ -127,15 +155,25 @@
 
 
 -(BOOL)contains:(NSString *)string {
-    NSRange range = [self rangeOfString:string];
-    return (range.location != NSNotFound);
+    if (string) {
+        NSRange range = [self rangeOfString:string];
+        return (range.location != NSNotFound);
+    }else{
+        return NO;
+    }
+
 }
 
 -(NSString *)replaceAll:(NSString *)regex replacement:(NSString *)replacement{
-    return [self stringByReplacingOccurrencesOfString:regex
-                                                         withString: replacement
-                                                            options: NSRegularExpressionSearch
-                                                              range: NSMakeRange(0, self.length)];
+    if (replacement) {
+        return [self stringByReplacingOccurrencesOfString:regex
+                                               withString: replacement
+                                                  options: NSRegularExpressionSearch
+                                                    range: NSMakeRange(0, self.length)];
+    }else{
+        return self;
+    }
+    
 }
 
 @end
