@@ -23,7 +23,7 @@
     if (range.length==0) {
         return -1;
     }
-    return range.location;
+    return (int)range.location;
 }
 
 
@@ -32,7 +32,7 @@
     NSRange range;
     
     if (string){
-        range = [self rangeOfString:string options:NSCaseInsensitiveSearch];
+        range = [self rangeOfString:string options:NSCaseInsensitiveSearch | NSBackwardsSearch];
     }
     
     //return -1 if string not found
@@ -40,7 +40,7 @@
         return -1;
     }
     
-    return range.location;
+    return (int)range.location;
 }
 
 -(NSArray *)splitOnString:(NSString *)string {
